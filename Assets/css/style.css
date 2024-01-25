@@ -65,6 +65,28 @@ main {
     transition: 0.5s;
 }
 
+#score-sheet {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(244, 244, 244);
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px 1px rgb(228, 228, 228);
+    width: 40%;
+    height: 350px;
+    padding: 30px;
+    transition: 1s;
+}
+
+#restart-btn {
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 5px;
+    background-color: rgb(255, 176, 72);
+    cursor: pointer;
+}
+
 h2 {
     width: 70%;
     text-align: center;
@@ -78,9 +100,6 @@ h2 {
     font-size: 30px;
     border-radius: 5px;
     transition: 0.1s;
-}
-
-#start-btn:hover {
     cursor: pointer;
 }
 
@@ -102,7 +121,14 @@ h2 {
     border: 2px rgb(38, 38, 38) solid;
     border-radius: 5px;
     color: rgb(0, 0, 0);
-    font-size: 20px;
+    font-size: 23px;
     padding: 10px;
     width: 200px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.option:hover {
+    background-color: rgba(255, 166, 0, 0.892);
+    transition: 0.5s;
 }
