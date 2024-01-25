@@ -14,16 +14,22 @@ const restartBtn = document.createElement("button")
 // Defines prompt text for each question
 const promptNum = 'Question #';
 
-const promptOne = promptNum + '1: What is your favorite color?';
-const promptTwo = promptNum + '2: What is your favorite animal?';
-const promptThree = promptNum + '3: What is your favorite food?';
-const promptFour = promptNum + '4: What is your favorite place to travel?';
-const promptFive = promptNum + '5: What is your favorite planet?';
-const promptSix = promptNum + '6: What is your favorite dinosaur?';
-const promptSeven = promptNum + '7: What is your favorite thing about space?';
-const promptEight = promptNum + '8: What is your favorite pastime?';
-const promptNine = promptNum + '9: What is your favorite game?';
-const promptTen = promptNum + '10: What is your favorite show?';
+const promptOne = promptNum + '1) Which of the following is not a variable type?';
+const promptTwo = promptNum + '2) What index number is assigned to the last value in the following array: const arr = [2, 60, 35, 6, 84 92];?';
+const promptThree = promptNum + '3) Which of the following should not be inside of a “for” statement?';
+const promptFour = promptNum + '4) If the following conditional statement were used one after the other, which order of conditional statements would be correct? (assume left to right is top to bottom in actual code)';
+const promptFive = promptNum + '5) Which of the following is an array method?';
+const promptSix = promptNum + '6) Which bracket type is used for arrays?';
+const promptSeven = promptNum + '7) If we wanted to create an element in javascript, which line of JavaScript code would we use?';
+const promptEight = promptNum + '8) Which of the following is used in JavaScript to listen for a certain event such as a click?';
+const promptNine = promptNum + '9) How do you nest a an element within another element by manipulating the DOM in JavaScript?';
+const promptTen = promptNum + '10) What is the airspeed velocity of an unladen swallow?';
+
+// Creates options for each question
+let optionOne = document.createElement("p");
+let optionTwo = document.createElement("p");
+let optionThree = document.createElement("p");
+let optionFour = document.createElement("p");
 
 let currentScore = 0;
 
@@ -37,7 +43,7 @@ function startQuiz(event) {
 
     // Sets the timer for the quiz
     const timer = setInterval(function() {
-        timerEl.textContent = secondsLeft + " segundos left";
+        timerEl.textContent = secondsLeft + " seconds left";
         secondsLeft--;
     
         if(secondsLeft < 0) {
@@ -50,21 +56,15 @@ function startQuiz(event) {
     quizPrompt.innerHTML = promptOne;
     startBtn.remove();
 
-    // Creates options for the first option
-    let optionOne = document.createElement("p");
-    let optionTwo = document.createElement("p");
-    let optionThree = document.createElement("p");
-    let optionFour = document.createElement("p");
-
     optionOne.setAttribute("class", "option");
     optionTwo.setAttribute("class", "option");
     optionThree.setAttribute("class", "option");
     optionFour.setAttribute("class", "option");
 
-    optionOne.innerHTML = "Blue";
-    optionTwo.innerHTML = "Green";
-    optionThree.innerHTML = "Red";
-    optionFour.innerHTML = "Purple";
+    optionOne.innerHTML = "Boolean";
+    optionTwo.innerHTML = "Rope";
+    optionThree.innerHTML = "String";
+    optionFour.innerHTML = "Number";
 
     optionsCont.appendChild(optionOne);
     optionsCont.appendChild(optionTwo);
@@ -73,7 +73,7 @@ function startQuiz(event) {
 
     optionTwo.onclick = function () {
         currentScore++;
-        localstorage.setItem("currentScore", currentScore);
+        localStorage.setItem("currentScore", currentScore);
     }
 
     optionFour.onclick = function() {
@@ -86,12 +86,282 @@ function startQuiz(event) {
         secondsLeft = secondsLeft - 5;
     }
 
-    const optionClick = optionOne || optionTwo || optionThree || optionFour;
-    optionClick.addEventListener("click", questionTwo)
+    const optionClick = [optionOne, optionTwo, optionThree, optionFour];
+
+    for(let i = 0; i < optionClick.length; i++){
+        optionClick[i].addEventListener("click", questionTwo)
+    }
 }
 
 function questionTwo() {
 
+    quizPrompt.innerHTML = promptTwo;
+
+    optionOne.innerHTML = "arr[5]";
+    optionTwo.innerHTML = "arr[0]";
+    optionThree.innerHTML = "arr[1]";
+    optionFour.innerHTML = "arr[6]";
+
+    optionOne.onclick = function () {
+        currentScore++;
+        localStorage.setItem("currentScore", currentScore);
+    }
+
+    optionTwo.onclick = function() {
+        secondsLeft = secondsLeft-=5;
+    }
+    optionThree.onclick = function() {
+        secondsLeft = secondsLeft-=5;
+    }
+    optionFour.onclick = function() {
+        secondsLeft = secondsLeft-=5;
+    }
+
+    const optionClick = [optionOne, optionTwo, optionThree, optionFour];
+
+    for(let i = 0; i < optionClick.length; i++){
+        optionClick[i].addEventListener("click", questionThree)
+    }
+}
+
+function questionThree() {
+    quizPrompt.innerHTML = promptThree;
+
+    optionOne.innerHTML = "i = 0";
+    optionTwo.innerHTML = "i++";
+    optionThree.innerHTML = "i < array.length";
+    optionFour.innerHTML = "function(x)";
+
+    optionFour.onclick = function () {
+        currentScore++;
+        localStorage.setItem("currentScore", currentScore);
+    }
+
+    optionOne.onclick = function() {
+        secondsLeft = secondsLeft-=5;
+    }
+    optionTwo.onclick = function() {
+        secondsLeft = secondsLeft-=5;
+    }
+    optionThree.onclick = function() {
+        secondsLeft = secondsLeft-=5;
+    }
+
+    const optionClick = [optionOne, optionTwo, optionThree, optionFour];
+
+    for(let i = 0; i < optionClick.length; i++){
+        optionClick[i].addEventListener("click", questionFour)
+    }
+}
+
+function questionFour() {
+    quizPrompt.innerHTML = promptFour;
+
+    optionOne.innerHTML = "if, else if, else if, else";
+    optionTwo.innerHTML = "if, else, else if, else if";
+    optionThree.innerHTML = "else if, else if, if, else";
+    optionFour.innerHTML = "else if, else if, else, if";
+
+    optionOne.onclick = function () {
+        currentScore++;
+        localStorage.setItem("currentScore", currentScore);
+    }
+
+    optionTwo.onclick = function() {
+        secondsLeft = secondsLeft-=5;
+    }
+    optionThree.onclick = function() {
+        secondsLeft = secondsLeft-=5;
+    }
+    optionFour.onclick = function() {
+        secondsLeft = secondsLeft-=5;
+    }
+
+    const optionClick = [optionOne, optionTwo, optionThree, optionFour];
+
+    for(let i = 0; i < optionClick.length; i++){
+        optionClick[i].addEventListener("click", questionFive)
+    }
+}
+
+function questionFive() {
+    quizPrompt.innerHTML = promptFive;
+
+    optionOne.innerHTML = "conquer()";
+    optionTwo.innerHTML = "deliver()";
+    optionThree.innerHTML = "congregate()";
+    optionFour.innerHTML = "splice()";
+
+    optionFour.onclick = function () {
+        currentScore++;
+        localStorage.setItem("currentScore", currentScore);
+    }
+
+    optionOne.onclick = function() {
+        secondsLeft = secondsLeft-=5;
+    }
+    optionTwo.onclick = function() {
+        secondsLeft = secondsLeft-=5;
+    }
+    optionThree.onclick = function() {
+        secondsLeft = secondsLeft-=5;
+    }
+
+    const optionClick = [optionOne, optionTwo, optionThree, optionFour];
+
+    for(let i = 0; i < optionClick.length; i++){
+        optionClick[i].addEventListener("click", questionSix)
+    }
+}
+
+function questionSix() {
+    quizPrompt.innerHTML = promptSix;
+
+    optionOne.innerHTML = "{}";
+    optionTwo.innerHTML = "[]";
+    optionThree.innerHTML = "()";
+    optionFour.innerHTML = "<>";
+
+    optionTwo.onclick = function () {
+        currentScore++;
+        localStorage.setItem("currentScore", currentScore);
+    }
+
+    optionOne.onclick = function() {
+        secondsLeft = secondsLeft-=5;
+    }
+    optionThree.onclick = function() {
+        secondsLeft = secondsLeft-=5;
+    }
+    optionFour.onclick = function() {
+        secondsLeft = secondsLeft-=5;
+    }
+
+    const optionClick = [optionOne, optionTwo, optionThree, optionFour];
+
+    for(let i = 0; i < optionClick.length; i++){
+        optionClick[i].addEventListener("click", questionSeven)
+    }
+}
+
+function questionSeven() {
+    quizPrompt.innerHTML = promptSeven;
+
+    optionOne.innerHTML = "element.makeElement(“p”)";
+    optionTwo.innerHTML = "element.existElement(“p”)";
+    optionThree.innerHTML = "element.createElement(“p”)";
+    optionFour.innerHTML = "element.spawnElement(“p”)";
+
+    optionThree.onclick = function () {
+        currentScore++;
+        localStorage.setItem("currentScore", currentScore);
+    }
+
+    optionOne.onclick = function() {
+        secondsLeft = secondsLeft-=5;
+    }
+    optionTwo.onclick = function() {
+        secondsLeft = secondsLeft-=5;
+    }
+    optionFour.onclick = function() {
+        secondsLeft = secondsLeft-=5;
+    }
+
+    const optionClick = [optionOne, optionTwo, optionThree, optionFour];
+
+    for(let i = 0; i < optionClick.length; i++){
+        optionClick[i].addEventListener("click", questionEight)
+    }
+}
+
+function questionEight() {
+    quizPrompt.innerHTML = promptEight;
+
+    optionOne.innerHTML = "includeEventHandler";
+    optionTwo.innerHTML = "addEventListener";
+    optionThree.innerHTML = "includeEventListener";
+    optionFour.innerHTML = "addEventHandler";
+
+    optionTwo.onclick = function () {
+        currentScore++;
+        localStorage.setItem("currentScore", currentScore);
+    }
+
+    optionOne.onclick = function() {
+        secondsLeft = secondsLeft-=5;
+    }
+    optionThree.onclick = function() {
+        secondsLeft = secondsLeft-=5;
+    }
+    optionFour.onclick = function() {
+        secondsLeft = secondsLeft-=5;
+    }
+
+    const optionClick = [optionOne, optionTwo, optionThree, optionFour];
+
+    for(let i = 0; i < optionClick.length; i++){
+        optionClick[i].addEventListener("click", questionNine)
+    }
+}
+
+function questionNine() {
+    quizPrompt.innerHTML = promptNine;
+
+    optionOne.innerHTML = "element.attachChild(“p”) ";
+    optionTwo.innerHTML = "element.connectChild(“p”)";
+    optionThree.innerHTML = "element.appendChild(“p”)";
+    optionFour.innerHTML = "element.nestChild(“p”)";
+
+    optionThree.onclick = function () {
+        currentScore++;
+        localStorage.setItem("currentScore", currentScore);
+    }
+
+    optionOne.onclick = function() {
+        secondsLeft = secondsLeft-=5;
+    }
+    optionTwo.onclick = function() {
+        secondsLeft = secondsLeft-=5;
+    }
+    optionFour.onclick = function() {
+        secondsLeft = secondsLeft-=5;
+    }
+
+    const optionClick = [optionOne, optionTwo, optionThree, optionFour];
+
+    for(let i = 0; i < optionClick.length; i++){
+        optionClick[i].addEventListener("click", questionTen)
+    }
+}
+
+function questionTen() {
+    quizPrompt.innerHTML = promptTen;
+
+    optionOne.innerHTML = "What do you mean, and African or European Swallow?";
+    optionTwo.innerHTML = "I don’t know";
+    optionThree.innerHTML = "20.1 mph";
+    optionFour.innerHTML = "I don’t care";
+
+    optionOne.onclick = function () {
+        currentScore++;
+        localStorage.setItem("currentScore", currentScore);
+    }
+
+    optionTwo.onclick = function() {
+        secondsLeft = secondsLeft-=5;
+    }
+    optionThree.onclick = function() {
+        secondsLeft = secondsLeft-=5;
+    }
+    optionFour.onclick = function() {
+        secondsLeft = secondsLeft-=5;
+    }
+
+    const optionClick = [optionOne, optionTwo, optionThree, optionFour];
+
+    for(let i = 0; i < optionClick.length; i++){
+        optionClick[i].addEventListener("click", showScores)
+    }
 }
 
 function showScores() {
