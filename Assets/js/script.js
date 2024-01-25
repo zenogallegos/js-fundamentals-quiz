@@ -15,11 +15,11 @@ const restartBtn = document.createElement("button")
 const promptNum = 'Question #';
 
 const promptOne = promptNum + '1) Which of the following is not a variable type?';
-const promptTwo = promptNum + '2) What index number is assigned to the last value in the following array: const arr = [2, 60, 35, 6, 84 92];?';
-const promptThree = promptNum + '3) Which of the following should not be inside of a “for” statement?';
-const promptFour = promptNum + '4) If the following conditional statement were used one after the other, which order of conditional statements would be correct? (assume left to right is top to bottom in actual code)';
+const promptTwo = promptNum + '2) What index number is assigned to the last value in the following array: const arr = [2, 60, 35, 6, 84, 92];?';
+const promptThree = promptNum + '3) Which of the following is not neither an intialization, condition, nor afterthought within a “for” statement?';
+const promptFour = promptNum + '4) If the following conditional statements were used one after the other, which order of conditional statements would be correct? (assume left to right is top to bottom in actual code)';
 const promptFive = promptNum + '5) Which of the following is an array method?';
-const promptSix = promptNum + '6) Which bracket type is used for arrays?';
+const promptSix = promptNum + '6) Which bracket type is used to hold array values?';
 const promptSeven = promptNum + '7) If we wanted to create an element in javascript, which line of JavaScript code would we use?';
 const promptEight = promptNum + '8) Which of the following is used in JavaScript to listen for a certain event such as a click?';
 const promptNine = promptNum + '9) How do you nest a an element within another element by manipulating the DOM in JavaScript?';
@@ -73,7 +73,7 @@ function startQuiz(event) {
 
     optionTwo.onclick = function () {
         currentScore++;
-        localStorage.setItem("currentScore", currentScore);
+        localStorage.setItem("currentScore", JSON.stringify(currentScore));
     }
 
     optionFour.onclick = function() {
@@ -104,7 +104,7 @@ function questionTwo() {
 
     optionOne.onclick = function () {
         currentScore++;
-        localStorage.setItem("currentScore", currentScore);
+        localStorage.setItem("currentScore", JSON.stringify(currentScore));
     }
 
     optionTwo.onclick = function() {
@@ -134,7 +134,7 @@ function questionThree() {
 
     optionFour.onclick = function () {
         currentScore++;
-        localStorage.setItem("currentScore", currentScore);
+        localStorage.setItem("currentScore", JSON.stringify(currentScore));
     }
 
     optionOne.onclick = function() {
@@ -164,7 +164,7 @@ function questionFour() {
 
     optionOne.onclick = function () {
         currentScore++;
-        localStorage.setItem("currentScore", currentScore);
+        localStorage.setItem("currentScore", JSON.stringify(currentScore));
     }
 
     optionTwo.onclick = function() {
@@ -194,7 +194,7 @@ function questionFive() {
 
     optionFour.onclick = function () {
         currentScore++;
-        localStorage.setItem("currentScore", currentScore);
+        localStorage.setItem("currentScore", JSON.stringify(currentScore));
     }
 
     optionOne.onclick = function() {
@@ -224,7 +224,7 @@ function questionSix() {
 
     optionTwo.onclick = function () {
         currentScore++;
-        localStorage.setItem("currentScore", currentScore);
+        localStorage.setItem("currentScore", JSON.stringify(currentScore));
     }
 
     optionOne.onclick = function() {
@@ -254,7 +254,7 @@ function questionSeven() {
 
     optionThree.onclick = function () {
         currentScore++;
-        localStorage.setItem("currentScore", currentScore);
+        localStorage.setItem("currentScore", JSON.stringify(currentScore));
     }
 
     optionOne.onclick = function() {
@@ -284,7 +284,7 @@ function questionEight() {
 
     optionTwo.onclick = function () {
         currentScore++;
-        localStorage.setItem("currentScore", currentScore);
+        localStorage.setItem("currentScore", JSON.stringify(currentScore));
     }
 
     optionOne.onclick = function() {
@@ -314,7 +314,7 @@ function questionNine() {
 
     optionThree.onclick = function () {
         currentScore++;
-        localStorage.setItem("currentScore", currentScore);
+        localStorage.setItem("currentScore", JSON.stringify(currentScore));
     }
 
     optionOne.onclick = function() {
@@ -344,7 +344,7 @@ function questionTen() {
 
     optionOne.onclick = function () {
         currentScore++;
-        localStorage.setItem("currentScore", currentScore);
+        localStorage.setItem("currentScore", JSON.stringify(currentScore));
     }
 
     optionTwo.onclick = function() {
@@ -393,8 +393,10 @@ function showScores() {
     restartBtn.setAttribute("id", "restart-submit-btn");
     quizPrompt.setAttribute("style", "margin: 0px; font-size: 40px;");
 
+    let currentScore = localStorage.getItem("currentScore");
+
     // The total score will be entered here
-    quizPrompt.textContent = "Your Score: ";
+    quizPrompt.textContent = "Your Score: " + currentScore;
 
     // Event listener for the "restart button" to start the quiz again
     restartBtn.addEventListener("click", function restartQuiz() {
@@ -403,5 +405,11 @@ function showScores() {
 
 }
 
+function highScoresSection () {
+
+}
+
 // Event listener for the "start button" to begin the quiz
 startBtn.addEventListener("click", startQuiz);
+
+scoresBtn.addEventListener('click', highScoresSection);
