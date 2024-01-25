@@ -32,14 +32,13 @@ let optionThree = document.createElement("p");
 let optionFour = document.createElement("p");
 
 let currentScore = 0;
+let secondsLeft = 60;
 
 // Function to begin the quiz, remove the starting section,
 // start the timer, and initialize the first question
 function startQuiz(event) {
 
     timerEl.textContent = "Good Luck!";
-
-    let secondsLeft = 60;
 
     // Sets the timer for the quiz
     const timer = setInterval(function() {
@@ -49,6 +48,7 @@ function startQuiz(event) {
         if(secondsLeft < 0) {
             // Stops execution
             clearInterval(timer);
+            timerEl.textContent = "Time's Up!";
             showScores();
         }
     }, 1000);
@@ -77,13 +77,13 @@ function startQuiz(event) {
     }
 
     optionFour.onclick = function() {
-        secondsLeft = secondsLeft - 5;
+        secondsLeft = secondsLeft-=5;
     }
     optionOne.onclick = function() {
-        secondsLeft = secondsLeft - 5;
+        secondsLeft = secondsLeft-=5;
     }
     optionThree.onclick = function() {
-        secondsLeft = secondsLeft - 5;
+        secondsLeft = secondsLeft-=5;
     }
 
     const optionClick = [optionOne, optionTwo, optionThree, optionFour];
@@ -360,30 +360,37 @@ function questionTen() {
     const optionClick = [optionOne, optionTwo, optionThree, optionFour];
 
     for(let i = 0; i < optionClick.length; i++){
-        optionClick[i].addEventListener("click", showScores)
+        optionClick[i].addEventListener("click", function clearTimer () {secondsLeft = 0; timerEl.textContent = "What a speedy little fella!";}, showScores)
     }
 }
 
 function showScores() {
 
-    timerEl.textContent = "Time's Up!";
+    timerEl.textContent = " ";
     quizCont.remove();
 
     const scoresCont = document.createElement('div');
     const scoreInst = document.createElement('p')
+    const initialInpt = document.createElement('input')
+    const inputBtn = document.createElement('button')
 
     scoresCont.setAttribute("id", "score-sheet");
     main.appendChild(scoresCont);
 
     scoresCont.appendChild(quizPrompt);
     scoresCont.appendChild(scoreInst);
+    scoresCont.appendChild(initialInpt);
+    scoresCont.appendChild(inputBtn);
     scoresCont.appendChild(restartBtn);
 
-    scoreInst.textContent = "Enter your initials to keep your high score and play again!";
+    scoreInst.textContent = "Enter your initials (or whatever) to keep your high score and play again!";
+    inputBtn.textContent = "Save Score"
     restartBtn.textContent = "Restart Quiz";
 
     scoreInst.setAttribute("style", "font-size: 16px; margin-top: 0px;");
-    restartBtn.setAttribute("id", "restart-btn");
+    initialInpt.setAttribute("id", "input-field")
+    inputBtn.setAttribute("id", "restart-submit-btn");
+    restartBtn.setAttribute("id", "restart-submit-btn");
     quizPrompt.setAttribute("style", "margin: 0px; font-size: 40px;");
 
     // The total score will be entered here
